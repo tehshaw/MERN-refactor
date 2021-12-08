@@ -5,14 +5,11 @@ const { signToken, checkToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     getMe: async (parent, args, { authorization }) => {
-    console.log(authorization)
         const user = checkToken(authorization);
-    console.log(user)
       if (user) {
         const foundUser = await User.findOne({
           _id: user._id,
         }).populate("savedBooks")
-        console.log(foundUser)
         return foundUser;
       }
     },
@@ -44,7 +41,6 @@ const resolvers = {
     },
 
     saveBook: async (parent, args, { authorization }) => {
-      console.log(args)
       const user = checkToken(authorization);
       if (user) {
         const updatedUser = await User.findOneAndUpdate(

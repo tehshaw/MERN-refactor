@@ -44,6 +44,7 @@ const resolvers = {
     },
 
     saveBook: async (parent, args, { authorization }) => {
+      console.log(args)
       const user = checkToken(authorization);
       if (user) {
         const updatedUser = await User.findOneAndUpdate(

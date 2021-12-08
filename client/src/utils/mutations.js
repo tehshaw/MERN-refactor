@@ -39,9 +39,7 @@ export const SAVE_BOOK = gql`
       image: $image,
       link: $link,
     ) {
-      user {
         email
-        password
         savedBooks {
           authors
           description
@@ -51,7 +49,6 @@ export const SAVE_BOOK = gql`
           title
         }
         bookCount
-      }
     }
   }
 `;

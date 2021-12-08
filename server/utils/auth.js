@@ -36,4 +36,20 @@ module.exports = {
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
+  checkToken: function ( token ) {
+
+    if (!token) {
+      return false
+    }
+  
+    const userToken = token.split(' ').pop().trim();
+
+    try {
+      const { data } = jwt.verify(userToken, secret, { maxAge: expiration });
+      return data
+    } catch {
+      console.log('Invalid token');
+      return false
+    }
+  }
 };
